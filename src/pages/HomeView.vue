@@ -1,7 +1,10 @@
 <template lang="html">
   <div class="container">
     <div class="mb-4">
-      {{ this.data }}
+      <ul v-for="data in data" :key="data._id" class="list-group">
+  <li class="list-group-item active">{{data.userId}}</li>
+  <li class="list-group-item">{{data.badgeTime}}</li>
+</ul>
     </div>
     <button @click.prevent="getDays" class="btn btn-primary">
       Récupère la data
@@ -28,6 +31,7 @@ export default {
           }
         })
         .then((value) => {
+          console.log(value)
           this.data = value;
         })
         .catch((err) => {
@@ -41,10 +45,13 @@ export default {
           "Accept": "application/json",
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({_id:'ndknezjkfkjze', userId: 'edenejfjzf'}),
+        body: JSON.stringify({_id:'ndknezjkfkjze', userId: 'UserId'}),
       });
     },
   },
-};
+  mounted() {
+    this.getDays();
+  }
+}
 </script>
 <style lang="css"></style>
