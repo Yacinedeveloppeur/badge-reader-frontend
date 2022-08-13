@@ -1,32 +1,26 @@
 <template lang="fr">
-    <ul class="list-group">
-        <li class="list-group-item active">{{ badgeTime.userId }}</li>
-        <li class="list-group-item">{{ badgeTime.badgeTime }} - <a :href="'/badge-time/' + badgeTime._id + '/update'" class="btn btn-success">Update</a></li>
+    <ul class="list-group" v-for="badgeTime in badgeTimes" ::key="badgeTime._id">
+    <li v-if="badgeTime._id == badgeTimeId" class="list-group-item active">{{ badgeTime.userId }}</li>  
+    <li v-if="badgeTime._id == badgeTimeId" class="list-group-item">{{ badgeTime.badgeTime }} - <a :href="'/badge-time/' + badgeTime._id + '/update'" class="btn btn-success">Update</a></li>
       </ul>
       <div class="input-group mb-3">
 </div>
 </template>
 <script>
+import { mapState } from "vuex";
+
 export default {
   name: "BadgeTimeView",
   data() {
     return {
-      badgeTime: {},
+      badgeTimeId: this.$route.params.id,
     };
   },
+  computed: {
+    ...mapState(["badgeTimes"]),
+  },
   mounted() {
-    fetch(`http://localhost:3000/api/badge-time/${this.$route.params.id}`)
-      .then((res) => {
-        if (res.ok) {
-          return res.json();
-        }
-      })
-      .then((value) => {
-        this.badgeTime = value;
-      })
-      .catch((err) => {
-        console.log(err);
-      });
+    this.$store.dispatch("updateBadgeTimes");
   },
 };
 </script>

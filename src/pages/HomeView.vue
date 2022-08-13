@@ -1,11 +1,11 @@
 <template lang="fr">
   <div class="container">
     <div class="mb-4">
-      <ul v-for="data in data" :key="data._id" class="list-group mb-3">
-      <a :href="'/badge-time/' + data._id">
-        <li class="list-group-item active">{{ data.userId }}</li>
+      <ul v-for="badgeTime in badgeTimes" :key="badgeTime._id" class="list-group mb-3">
+      <a :href="'/badge-time/' + badgeTime._id">
+        <li class="list-group-item active">{{ badgeTime.userId }}</li>
       </a>
-        <li class="list-group-item">{{ data.badgeTime }} - <a :href="'/badge-time/' + data._id + '/update'" class="btn btn-success">Update</a></li>
+        <li class="list-group-item">{{ badgeTime.badgeTime }} - <a :href="'/badge-time/' + badgeTime._id + '/update'" class="btn btn-success">Update</a></li>
       </ul>
     </div>
     <button @click.prevent="postDay" class="btn btn-warning post-btn">
@@ -14,28 +14,15 @@
   </div>
 </template>
 <script>
+import { mapState, mapActions } from "vuex";
+
 export default {
   name: "HomeView",
-  data() {
-    return {
-      data: this.data,
-    };
+  computed: {
+    ...mapState(["badgeTimes"]),
   },
   methods: {
-    getDays() {
-      fetch("http://localhost:3000/api/badge-time")
-        .then((res) => {
-          if (res.ok) {
-            return res.json();
-          }
-        })
-        .then((value) => {
-          this.data = value;
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-    },
+    ...mapActions["updateBadgeTimes"],
     postDay() {
       fetch("http://localhost:3000/api/badge-time", {
         method: "POST",
@@ -48,7 +35,7 @@ export default {
     },
   },
   mounted() {
-    this.getDays();
+    this.$store.dispatch("updateBadgeTimes");
   },
 };
 </script>
