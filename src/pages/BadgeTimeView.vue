@@ -1,14 +1,17 @@
 <template lang="fr">
-    <div>
-        {{data}}
-    </div>
+    <ul class="list-group">
+        <li class="list-group-item active">{{ badgeTime.userId }}</li>
+        <li class="list-group-item">{{ badgeTime.badgeTime }} - <a :href="'/badge-time/' + badgeTime._id + '/update'" class="btn btn-success">Update</a></li>
+      </ul>
+      <div class="input-group mb-3">
+</div>
 </template>
 <script>
 export default {
   name: "BadgeTimeView",
   data() {
     return {
-      data: this.data,
+      badgeTime: {},
     };
   },
   mounted() {
@@ -19,7 +22,7 @@ export default {
         }
       })
       .then((value) => {
-        this.data = value;
+        this.badgeTime = value;
       })
       .catch((err) => {
         console.log(err);

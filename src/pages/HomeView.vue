@@ -1,18 +1,15 @@
 <template lang="fr">
   <div class="container">
     <div class="mb-4">
-      <ul v-for="data in data" :key="data._id" class="list-group">
+      <ul v-for="data in data" :key="data._id" class="list-group mb-3">
       <a :href="'/badge-time/' + data._id">
         <li class="list-group-item active">{{ data.userId }}</li>
       </a>
-        <li class="list-group-item">{{ data.badgeTime }}</li>
+        <li class="list-group-item">{{ data.badgeTime }} - <a :href="'/badge-time/' + data._id + '/update'" class="btn btn-success">Update</a></li>
       </ul>
     </div>
-    <button @click.prevent="getDays" class="btn btn-primary get-btn">
-      Récupère la data
-    </button>
-    <button @click.prevent="postDay" class="btn btn-success post-btn">
-      Envoi la data
+    <button @click.prevent="postDay" class="btn btn-warning post-btn">
+      Click to Badge !
     </button>
   </div>
 </template>

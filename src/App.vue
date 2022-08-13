@@ -1,5 +1,7 @@
 <template>
-  <nav><router-link to="/">Home</router-link></nav>
+  <nav>
+    <router-link to="/">Badge-reader !</router-link>
+  </nav>
   <router-view />
 </template>
 
@@ -22,6 +24,6 @@ nav a {
 }
 
 nav a.router-link-exact-active {
-  color: #42b983;
+  color: #0d6efd;
 }
 </style>
