@@ -1,5 +1,5 @@
 <template lang="fr">
-    <ul class="list-group" v-for="badgeTime in badgeTimes" ::key="badgeTime._id">
+    <ul class="list-group" v-for="badgeTime in badgeTimes" :key="badgeTime._id">
     <li v-if="badgeTime._id == badgeTimeId" class="list-group-item active">{{ badgeTime.userId }}</li>  
     <li v-if="badgeTime._id == badgeTimeId" class="list-group-item">{{ badgeTime.badgeTime }} - <a :href="'/badge-time/' + badgeTime._id + '/update'" class="btn btn-success">Update</a></li>
       </ul>
