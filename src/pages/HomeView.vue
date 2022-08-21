@@ -14,7 +14,7 @@
   </div>
 </template>
 <script>
-import { mapState, mapActions } from "vuex";
+import { mapState } from "vuex";
 
 export default {
   name: "HomeView",
@@ -22,7 +22,6 @@ export default {
     ...mapState(["badgeTimes"]),
   },
   methods: {
-    ...mapActions["updateBadgeTimes"],
     postDay() {
       fetch("http://localhost:3000/api/badge-time", {
         method: "POST",
@@ -35,7 +34,7 @@ export default {
     },
   },
   mounted() {
-    this.$store.dispatch("updateBadgeTimes");
+    this.$store.dispatch("getBadgeTimes");
   },
 };
 </script>

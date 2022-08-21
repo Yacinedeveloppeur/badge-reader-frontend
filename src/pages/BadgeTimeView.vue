@@ -20,7 +20,7 @@ export default {
     ...mapState(["badgeTimes"]),
   },
   mounted() {
-    this.$store.dispatch("updateBadgeTimes");
+    this.$store.dispatch("getBadgeTimes");
   },
 };
 </script>

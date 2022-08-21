@@ -17,7 +17,8 @@ const routes = [
   {
     path: '/badge-time/:id/update',
     name: 'badge-time-update',
-    component: BadgeTimeUpdateView
+    component: BadgeTimeUpdateView,
+   
   }
 ]
 

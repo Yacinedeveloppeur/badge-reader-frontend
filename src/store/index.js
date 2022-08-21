@@ -13,7 +13,7 @@ export default createStore({
     }
   },
   actions: {
-    updateBadgeTimes(context) {
+    getBadgeTimes(context) {
       fetch("http://localhost:3000/api/badge-time")
         .then((res) => {
           if (res.ok) {
@@ -26,7 +26,6 @@ export default createStore({
         .catch((err) => {
           console.log(err);
         });
-    
     }
   },
   modules: {
