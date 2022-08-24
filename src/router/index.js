@@ -19,7 +19,7 @@ const routes = [
     name: 'badge-time-update',
     component: BadgeTimeUpdateView,
    
-  }
+  },
 ]
 
 const router = createRouter({

@@ -33,6 +33,7 @@
       <input type="hidden" name="userId" :value="badgeTime.userId" />
       <input type="hidden" name="id" :value="badgeTime._id" />
       <button class="btn btn-primary mt-4" @click="updateBadgeTime">Modifier</button>
+      <div class="mt-4">{{message}}</div>
     </div>
   </div>
 </template>
@@ -46,6 +47,7 @@ export default {
       badgeTime: {},
       dateValue:'',
       timeValue:'',
+      message: '',
     };
   },
   methods: {
@@ -55,7 +57,7 @@ export default {
         updateTime() {
         this.timeValue = document.getElementById('time-input').value;
       },
-      getOneBadgeTime(badgeTimeId) {
+      getBadgeTime(badgeTimeId) {
       fetch(`http://localhost:3000/api/badge-time/${badgeTimeId}`)
         .then((res) => {
           if (res.ok) {
@@ -86,6 +88,7 @@ export default {
         })
         .then((value) => {
           console.log(value)
+          this.message = value.message
         })
         .catch((err) => {
           console.log(err);
@@ -93,7 +96,7 @@ export default {
     },
   },
   beforeMount() {
-    this.getOneBadgeTime(this.badgeTimeId)
+    this.getBadgeTime(this.badgeTimeId)
   },
 };
 </script>
