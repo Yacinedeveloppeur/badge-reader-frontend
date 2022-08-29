@@ -5,8 +5,6 @@
       <a :href="'/badge-time/' + badgeTime._id + '/update'" class="btn btn-success me-2">Modifier</a>
     </li>
       </ul>
-      <div class="input-group mb-3">
-</div>
 </template>
 <script>
 import { mapState } from "vuex";

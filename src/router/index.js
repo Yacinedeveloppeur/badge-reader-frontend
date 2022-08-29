@@ -2,12 +2,18 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../pages/HomeView.vue'
 import BadgeTimeView from '../pages/BadgeTimeView.vue'
 import BadgeTimeUpdateView from '../pages/BadgeTimeUpdateView.vue'
+import SignupView from '../pages/SignupView.vue'
 
 const routes = [
   {
     path: '/',
     name: 'home',
     component: HomeView
+  },
+  {
+    path: '/signup',
+    name: 'signup',
+    component: SignupView
   },
   {
     path: '/badge-time/:id',
