@@ -14,7 +14,14 @@ export default createStore({
   },
   actions: {
     getBadgeTimes(context) {
-      fetch("http://localhost:3000/api/badge-time")
+      let xsrfToken = localStorage.getItem('xsrfToken');
+      fetch("http://localhost:3000/api/badge-time", {
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          'x-xsrf-token': xsrfToken
+        },
+      })
         .then((res) => {
           if (res.ok) {
             return res.json();

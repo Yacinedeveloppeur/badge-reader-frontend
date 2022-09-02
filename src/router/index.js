@@ -3,6 +3,7 @@ import HomeView from '../pages/HomeView.vue'
 import BadgeTimeView from '../pages/BadgeTimeView.vue'
 import BadgeTimeUpdateView from '../pages/BadgeTimeUpdateView.vue'
 import SignupView from '../pages/SignupView.vue'
+import LoginView from '../pages/LoginView.vue'
 
 const routes = [
   {
@@ -14,6 +15,11 @@ const routes = [
     path: '/signup',
     name: 'signup',
     component: SignupView
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: LoginView
   },
   {
     path: '/badge-time/:id',
