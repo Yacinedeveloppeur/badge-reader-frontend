@@ -3,7 +3,7 @@ import { createStore } from 'vuex'
 export default createStore({
   state: {
     badgeTimes: 
-      []
+      [],
   },
   getters: {
   },
@@ -19,7 +19,7 @@ export default createStore({
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
-          'x-xsrf-token': xsrfToken
+          'x-xsrf-token': xsrfToken,
         },
       })
         .then((res) => {
@@ -33,7 +33,7 @@ export default createStore({
         .catch((err) => {
           console.log(err);
         });
-    }
+    },
   },
   modules: {
   }

@@ -8,6 +8,11 @@ import LoginView from '../pages/LoginView.vue'
 const routes = [
   {
     path: '/',
+    name: 'login',
+    component: LoginView
+  },
+  {
+    path: '/badge-times',
     name: 'home',
     component: HomeView
   },
@@ -15,11 +20,6 @@ const routes = [
     path: '/signup',
     name: 'signup',
     component: SignupView
-  },
-  {
-    path: '/login',
-    name: 'login',
-    component: LoginView
   },
   {
     path: '/badge-time/:id',

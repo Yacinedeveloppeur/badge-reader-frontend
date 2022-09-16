@@ -1,4 +1,5 @@
 <template lang="fr">
+  <form @submit="login">
     <div class="m-4">
         <div class="input-group mb-3">
             <div class="input-group-prepend">
@@ -12,8 +13,12 @@
             </div>
             <input type="password" class="form-control" id="password" name="password" v-model="password">
         </div>
-        <div class="mt-4"><button class="btn btn-primary" @click.prevent="signup">Valider</button></div>
-    </div> 
+        <div class="alert alert-danger mt-4" role="alert" @click.prevent="showModal = !showModal" v-if="showModal">
+          Mot de passe ou email incorrecte
+        </div>
+        <div class="mt-4"><button class="btn btn-primary" @click.prevent="login">Valider</button></div>
+    </div>
+  </form> 
 </template>
 <script>
 export default {
@@ -22,12 +27,15 @@ export default {
     return {
         email:'',
         password: '',
+        showModal: false,
     }
   },
   methods: {
-    signup() {
+    login() {
+      this.showModal = false;
         fetch("http://localhost:3000/api/auth/login", {
         method: "POST",
+        credentials: 'include', 
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
@@ -40,7 +48,13 @@ export default {
           }
         })
         .then((value) => {
-          localStorage.setItem('xsrfToken', JSON.stringify(value.xsrfToken))
+          if(value) {
+            localStorage.setItem('xsrfToken', value.xsrfToken)
+            console.log(value.message);
+            location.href = 'http://localhost:8080/badge-times';
+          } else {
+            this.showModal = true;
+          }
         })
         .catch((err) => {
           console.log(err);

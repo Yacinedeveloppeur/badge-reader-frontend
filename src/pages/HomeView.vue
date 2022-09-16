@@ -1,5 +1,8 @@
 <template lang="fr">
   <div class="container">
+
+
+
     <div class="mb-4">
       <ul v-for="badgeTime in badgeTimes" :key="badgeTime._id" class="list-group mb-3">
       <a :href="'/badge-time/' + badgeTime._id">
@@ -30,11 +33,13 @@ export default {
   },
   methods: {
     postDay() {
+      let xsrfToken = localStorage.getItem('xsrfToken');
       fetch("http://localhost:3000/api/badge-time", {
         method: "POST",
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
+          'x-xsrf-token': xsrfToken,
         },
         body: JSON.stringify({ _id: "ndknezjkfkjze", userId: "UserId" }),
       })
@@ -44,7 +49,7 @@ export default {
           }
         })
         .then((value) => {
-          console.log(value)
+          console.log(value);
           location.reload();
         })
         .catch((err) => {

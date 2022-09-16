@@ -58,7 +58,14 @@ export default {
         this.timeValue = document.getElementById('time-input').value;
       },
       getBadgeTime(badgeTimeId) {
-      fetch(`http://localhost:3000/api/badge-time/${badgeTimeId}`)
+      let xsrfToken = localStorage.getItem('xsrfToken');
+      fetch(`http://localhost:3000/api/badge-time/${badgeTimeId}`,
+        {
+          headers: {
+          'x-xsrf-token': xsrfToken,
+        },
+        }
+      )
         .then((res) => {
           if (res.ok) {
             return res.json();
@@ -74,11 +81,13 @@ export default {
         });
     },
     updateBadgeTime() {
+      let xsrfToken = localStorage.getItem('xsrfToken');
       fetch(`http://localhost:3000/api/badge-time/${this.badgeTime._id}`, {
         method: "PUT",
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
+          'x-xsrf-token': xsrfToken,
         },
         body: JSON.stringify({ badgeTime: this.dateValue + ' ' + this.timeValue, userId: this.badgeTime.userId }),
       }) .then((res) => {
