@@ -6,7 +6,7 @@
     <div class="mb-4">
       <ul v-for="badgeTime in badgeTimes" :key="badgeTime._id" class="list-group mb-3">
       <a :href="'/badge-time/' + badgeTime._id">
-        <li class="list-group-item active ">{{ badgeTime.userId }}</li>
+        <li class="list-group-item active ">{{ badgeTime.userEmail }}</li>
       </a>
         <li class="list-group-item">{{ badgeTime.badgeTime }}
           <a :href="'/badge-time/' + badgeTime._id + '/update'" class="btn btn-info text-light me-2">Modifier</a>
@@ -40,8 +40,7 @@ export default {
           Accept: "application/json",
           "Content-Type": "application/json",
           'x-xsrf-token': xsrfToken,
-        },
-        body: JSON.stringify({ _id: "ndknezjkfkjze", userId: "UserId" }),
+        }
       })
         .then((res) => {
           if (res.ok) {
