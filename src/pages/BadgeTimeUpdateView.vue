@@ -1,6 +1,7 @@
 <template lang="">
   <div class="container">
     <div>
+      <h2>{{badgeTime.userEmail}}</h2>
       <div class="input-group-prepend">
         <span class="input-group-text" id="inputGroup-sizing-default"
           >Modifier le badgage du {{ badgeTime.badgeTime }}</span
@@ -34,6 +35,7 @@
       <input type="hidden" name="id" :value="badgeTime._id" />
       <button class="btn btn-primary mt-4" @click="updateBadgeTime">Modifier</button>
       <div class="mt-4">{{message}}</div>
+      <a href="http://localhost:8080/badge-times">retour</a>
     </div>
   </div>
 </template>
