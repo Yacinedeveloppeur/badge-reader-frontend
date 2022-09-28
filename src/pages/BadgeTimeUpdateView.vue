@@ -4,7 +4,7 @@
       <h2>{{badgeTime.userEmail}}</h2>
       <div class="input-group-prepend">
         <span class="input-group-text" id="inputGroup-sizing-default"
-          >Modifier le badgage du {{ badgeTime.badgeTime }}</span
+          >Modifier le badgage du {{ formatDate(badgeTime.badgeTime) }}</span
         >
       </div>
       <input
@@ -40,6 +40,7 @@
   </div>
 </template>
 <script>
+import moment from "moment";
 
 export default {
   name: "BageTimeUpdateView",
@@ -53,6 +54,10 @@ export default {
     };
   },
   methods: {
+    formatDate(date) {
+      moment.locale('fr');
+      return moment(date).format('lll')
+    },
       updateDate() {
         this.dateValue = document.getElementById('date-input').value;
       },
@@ -91,14 +96,13 @@ export default {
           "Content-Type": "application/json",
           'x-xsrf-token': xsrfToken,
         },
-        body: JSON.stringify({ badgeTime: this.dateValue + ' ' + this.timeValue, userId: this.badgeTime.userId }),
+        body: JSON.stringify({ badgeTime: this.dateValue + ' ' + this.timeValue }),
       }) .then((res) => {
           if (res.ok) {
             return res.json();
           }
         })
         .then((value) => {
-          console.log(value)
           this.message = value.message
         })
         .catch((err) => {

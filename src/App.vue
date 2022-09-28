@@ -1,6 +1,7 @@
 <template>
   <nav>
-    <router-link to="/badge-times">Badge-reader !</router-link>
+    <router-link to="/badge-times">Accueil</router-link> - 
+    <router-link to="/">Connexion</router-link>
   </nav>
   <router-view />
 </template>

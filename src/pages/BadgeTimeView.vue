@@ -1,7 +1,7 @@
 <template lang="fr">
     <ul class="list-group" v-for="badgeTime in badgeTimes" :key="badgeTime._id">
     <li v-if="badgeTime._id == badgeTimeId" class="list-group-item active">{{ badgeTime.userEmail }}</li>  
-    <li v-if="badgeTime._id == badgeTimeId" class="list-group-item">{{ badgeTime.badgeTime }}
+    <li v-if="badgeTime._id == badgeTimeId" class="list-group-item">{{ formatDate(badgeTime.badgeTime) }}
       <a :href="'/badge-time/' + badgeTime._id + '/update'" class="btn btn-success me-2">Modifier</a>
     </li>
       </ul>
@@ -9,6 +9,7 @@
 </template>
 <script>
 import { mapState } from "vuex";
+import moment from "moment";
 
 export default {
   name: "BadgeTimeView",
@@ -16,6 +17,12 @@ export default {
     return {
       badgeTimeId: this.$route.params.id,
     };
+  },
+  methods: {
+    formatDate(date) {
+      moment.locale('fr');
+      return moment(date).format('lll')
+    },
   },
   computed: {
     ...mapState(["badgeTimes"]),

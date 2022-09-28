@@ -3,7 +3,7 @@
     <h2 v-if="badgeTimes.length > 0">{{badgeTimes[0].userEmail}}</h2>
     <div class="mb-4">
       <ul v-for="badgeTime in badgeTimes" :key="badgeTime._id" class="list-group mb-3">
-        <li class="list-group-item"><a class="me-3" :href="'/badge-time/' + badgeTime._id">{{ badgeTime.badgeTime }}</a>
+        <li class="list-group-item badge-time"><a class="me-3" :href="'/badge-time/' + badgeTime._id">{{ formatDate(badgeTime.badgeTime) }}</a>
           <a :href="'/badge-time/' + badgeTime._id + '/update'" class="btn btn-info text-light me-2">Modifier</a>
          <ConfirmDeletion :badgeTimeId="badgeTime._id"/>
         </li>
@@ -15,6 +15,7 @@
   </div>
 </template>
 <script>
+import moment from "moment";
 import { mapState } from "vuex";
 import ConfirmDeletion from '@/components/ConfirmDeletion.vue'
 
@@ -27,6 +28,10 @@ export default {
     ...mapState(["badgeTimes"]),
   },
   methods: {
+    formatDate(date) {
+      moment.locale('fr');
+      return moment(date).format('lll')
+    },
     postDay() {
       let xsrfToken = localStorage.getItem('xsrfToken');
       fetch("http://localhost:3000/api/badge-time", {
@@ -57,4 +62,19 @@ export default {
 };
 </script>
 <style lang="css">
+  .badge-time, .post-btn {
+    opacity: 0;
+    animation: displayBadgeTime 1000ms 100ms;
+    animation-fill-mode: forwards;
+  }
+
+  @keyframes displayBadgeTime {
+    0% {
+      opacity: 0;
+    } 
+    100% {
+      opacity: 1;
+    } 
+  }
+  
 </style>

@@ -1,11 +1,9 @@
-import { createStore } from 'vuex'
+import { createStore } from 'vuex';
 
 export default createStore({
   state: {
     badgeTimes: 
       [],
-  },
-  getters: {
   },
   mutations: {
     GET_BADGE_TIMES(state, value) {
