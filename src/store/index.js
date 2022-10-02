@@ -4,7 +4,8 @@ export default createStore({
   state: {
     badgeTimes: 
       [],
-    addressApi: 'https://evening-shore-80525.herokuapp.com'
+    addressApi: 'https://evening-shore-80525.herokuapp.com',
+    addressFrontApp: 'https://6339f6fdc893db28637fb51d--benevolent-puffpuff-085317.netlify.app'
   },
   mutations: {
     GET_BADGE_TIMES(state, value) {

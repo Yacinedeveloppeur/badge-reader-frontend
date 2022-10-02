@@ -35,7 +35,7 @@
       <input type="hidden" name="id" :value="badgeTime._id" />
       <button class="btn btn-primary mt-4" @click="updateBadgeTime">Modifier</button>
       <div class="mt-4">{{message}}</div>
-      <a href="http://localhost:8080/badge-times">retour</a>
+      <a href="/badge-times">retour</a>
     </div>
   </div>
 </template>
