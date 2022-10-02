@@ -9,7 +9,7 @@
         </li>
       </ul>
     </div>
-    <button @click.prevent="postDay" class="btn btn-warning post-btn">
+    <button @click.prevent="postDay()" class="btn btn-warning post-btn">
       Badger maintenant !
     </button>
   </div>
@@ -18,7 +18,6 @@
 import moment from "moment";
 import { mapState } from "vuex";
 import ConfirmDeletion from '@/components/ConfirmDeletion.vue'
-
 export default {
   name: "HomeView",
   components: {
@@ -34,7 +33,7 @@ export default {
     },
     postDay() {
       let xsrfToken = localStorage.getItem('xsrfToken');
-      fetch("http://localhost:3000/api/badge-time", {
+      fetch(this.$store.state.addressApi + "/api/badge-time", {
         method: "POST",
         headers: {
           Accept: "application/json",

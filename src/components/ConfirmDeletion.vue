@@ -27,7 +27,7 @@ export default {
     methods: {
     deleteBadgeTime(badgeTimeId) {
       let xsrfToken = localStorage.getItem('xsrfToken');
-      fetch(`http://localhost:3000/api/badge-time/${badgeTimeId}`, {
+      fetch(this.$store.state.addressApi + '/api/badge-time/' + badgeTimeId, {
         method:"DELETE",
         headers: {
           'x-xsrf-token': xsrfToken,

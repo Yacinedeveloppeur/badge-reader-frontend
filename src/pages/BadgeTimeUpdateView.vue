@@ -66,7 +66,7 @@ export default {
       },
       getBadgeTime(badgeTimeId) {
       let xsrfToken = localStorage.getItem('xsrfToken');
-      fetch(`http://localhost:3000/api/badge-time/${badgeTimeId}`,
+      fetch(this.$store.state.addressApi + '/api/badge-time/' + badgeTimeId,
         {
           headers: {
           'x-xsrf-token': xsrfToken,
@@ -89,7 +89,7 @@ export default {
     },
     updateBadgeTime() {
       let xsrfToken = localStorage.getItem('xsrfToken');
-      fetch(`http://localhost:3000/api/badge-time/${this.badgeTime._id}`, {
+      fetch(this.$store.state.addressApi + '/api/badge-time/' + this.badgeTime._id, {
         method: "PUT",
         headers: {
           Accept: "application/json",

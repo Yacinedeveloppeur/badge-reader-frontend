@@ -4,6 +4,7 @@ export default createStore({
   state: {
     badgeTimes: 
       [],
+    addressApi: 'https://evening-shore-80525.herokuapp.com'
   },
   mutations: {
     GET_BADGE_TIMES(state, value) {
@@ -13,7 +14,7 @@ export default createStore({
   actions: {
     getBadgeTimes(context) {
       let xsrfToken = localStorage.getItem('xsrfToken');
-      fetch("http://localhost:3000/api/badge-time", {
+      fetch(this.state.addressApi + "/api/badge-time", {
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",

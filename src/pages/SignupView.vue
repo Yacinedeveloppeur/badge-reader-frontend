@@ -12,6 +12,9 @@
             </div>
             <input type="password" class="form-control" id="password" name="password" v-model="password">
         </div>
+        <div :class="messageStatus" role="alert" v-if="showModal">
+          {{ message }} <a href="/" v-if="showLink"> connectez vous !</a>
+        </div>
         <div class="mt-4"><button class="btn btn-primary" @click.prevent="signup">Valider</button></div>
     </div> 
 </template>
@@ -22,11 +25,16 @@ export default {
     return {
         email:'',
         password: '',
+        showModal: false,
+        showLink: false,
+        message: '',
+        messageStatus: ''
     }
   },
   methods: {
     signup() {
-        fetch("http://localhost:3000/api/auth/signup", {
+      this.showModal = false;
+        fetch(this.$store.state.addressApi + "/api/auth/signup", {
         method: "POST",
         headers: {
           Accept: "application/json",
@@ -35,12 +43,22 @@ export default {
         body: JSON.stringify({ email: this.email, password: this.password }),
       })
         .then((res) => {
+          this.showModal = true;
           if (res.ok) {
             return res.json();
+          } else {
+            this.message = 'Identifiants incorrectes ou utilisateur déja existant'
+            this.messageStatus = 'alert alert-danger mt-4'
+            this.showLink = false
           }
         })
         .then((value) => {
-          console.log(value)
+          if(value){
+            console.log(value)
+            this.messageStatus = 'alert alert-success mt-4'
+            this.showLink = true
+            this.message = value.message
+          }
         })
         .catch((err) => {
           console.log(err);

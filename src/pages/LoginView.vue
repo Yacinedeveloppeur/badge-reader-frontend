@@ -33,7 +33,7 @@ export default {
   methods: {
     login() {
       this.showModal = false;
-        fetch("http://localhost:3000/api/auth/login", {
+        fetch(this.$store.state.addressApi + "/api/auth/login", {
         method: "POST",
         credentials: 'include', 
         headers: {
@@ -51,7 +51,7 @@ export default {
           if(value) {
             localStorage.setItem('xsrfToken', value.xsrfToken)
             console.log(value.message);
-            location.href = 'http://localhost:8080/badge-times';
+            location.href = '/badge-times';
           } else {
             this.showModal = true;
           }
